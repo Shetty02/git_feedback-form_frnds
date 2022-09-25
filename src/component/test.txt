@@ -1,0 +1,21 @@
+{ 
+    {
+        userName: "John",
+        userMessage: "Hello World!"
+    }
+}
+
+data = {
+    '12345':{
+        userName: "John",
+        userMessage:"Hello World"
+    },
+    '67890' :{
+        userName:"Jane",
+        userMessage:"Hello Guys"
+    },
+    '13567': {
+        userName: "Jeet",
+        userMessage: "Hello bros"
+    }
+}
