@@ -1,0 +1,83 @@
+.conatiner{
+    width: 100vw;
+    height: 100vh;
+    background-color: #4B79A1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* color: black; */
+}
+.conatiner-box{
+    max-width: 500px;
+}
+.form-container{
+    min-width: 300px;
+    width: 100%;
+    height: 150px;  
+    background-color: rgba(255, 255, 255, .136);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.form-container form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+
+}
+.form-container form input{
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: 6px;
+    width: 80%;
+    font-size: 16px;
+    text-align: center;
+}
+.form-container form button {
+    border-radius: 5px;
+    width: 30%;
+    padding: 2px;
+    height: 25px;
+    background-color: lightgray;
+    cursor: pointer;
+    font-size: 14px;
+    border: none;
+    outline: none;
+}
+.reponse-container{
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, .136);
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+.response-item{
+    display: flex;
+    /* margin-top: 5px; */
+    gap: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    align-items: center;
+    /* margin-top: 10px; */
+    gap: 5px;
+}
+.response-item p{
+    margin: 3px;
+}
+.response-name{
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(49, 45, 45);
+
+}
+.response-message{
+    color: #e3dddd;
+    font-size: 16px;
+    font-weight: 400;
+}

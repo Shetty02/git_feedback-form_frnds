@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import './SaveResponse.css'
 
 function SaveResponse() {
     const [userName, setUserName] = React.useState('');
     const [userMessage, setUserMessage] = React.useState('');
     const userResponse = [];
     const [allResponses, setAllResponses] = React.useState([]);
-    // const [stopInfiniteLoop, setStopInfiniteLoop] = React.useState(false);
+    const [stopInfiniteLoop, setStopInfiniteLoop] = React.useState(false);
 
 
     //Getting all the responses
-    // if(!stopInfiniteLoop) 
+    if(!stopInfiniteLoop) 
     {
         fetch('https://learnig-firebase-21207-default-rtdb.asia-southeast1.firebasedatabase.app/message.json')
         .then(response => response.json())
@@ -25,7 +26,7 @@ function SaveResponse() {
             setAllResponses(userResponse);
         })
 
-        // setStopInfiniteLoop(true);
+        setStopInfiniteLoop(true);
     }
 
     const handleUserMessageChange = (event) => {
@@ -42,6 +43,11 @@ function SaveResponse() {
         console.log('userName: ', userName);
         console.log('userMessage: ', userMessage);
 
+        if(userName === "" || userMessage === ''){
+          alert("can't submit empty feedback");
+          return;
+        }
+
         //Create(CRUD)
         // inside the fetch we are requesting to "Get" the data.
         // with the help of Get request we get the data from the database.
@@ -57,31 +63,52 @@ function SaveResponse() {
             })
 
         }
-        )
+        ).then(res =>{
+            console.log('res: ', res);
+            return res.json();
+        }).then(data => {
+            console.log('data: ', data);
+        })
+
+
+        setUserName('');
+        setUserMessage('');
     }
 
 
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
-        <input type="text" placeholder='Enter Name' onChange={handleUserNameChange}/> 
-        <input type="text"  placeholder='Enter your message' onChange={handleUserMessageChange}/>
-        <button>Submit</button>
-        </form>
-        {
-            allResponses &&(
-                allResponses.map(item => {
-                    return (
-                        <div> 
-                            <p>{item.userName}</p>
-                            <p>{item.userMessage}</p>
-                        </div>
-                    )
-                })
-            )
-        }
+    <div className="conatiner">
+      <div className="container-box">
+        <div className="form-container">
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Enter Name"
+              onChange={handleUserNameChange} value ={userName}
+            />
+            <input
+              type="text"
+              placeholder="Enter your message"
+              onChange={handleUserMessageChange} value = {userMessage}
+            />
+            <button>Submit</button>
+          </form>
+        </div>
+
+        <div className="reponse-container">
+          {allResponses &&
+            allResponses.map((item) => {
+              return (
+                <div className='response-item'>
+                  <p className='response-name'>{item.userName}</p>
+                  <p className='response-message'>{item.userMessage}</p>
+                </div>
+              );
+            })}
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
 export default SaveResponse
