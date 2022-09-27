@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './SaveResponse.css'
 
 function SaveResponse() {
@@ -6,12 +6,10 @@ function SaveResponse() {
     const [userMessage, setUserMessage] = React.useState('');
     const userResponse = [];
     const [allResponses, setAllResponses] = React.useState([]);
-    const [stopInfiniteLoop, setStopInfiniteLoop] = React.useState(false);
 
-
+  
     //Getting all the responses
-    if(!stopInfiniteLoop) 
-    {
+
         fetch('https://learnig-firebase-21207-default-rtdb.asia-southeast1.firebasedatabase.app/message.json')
         .then(response => response.json())
         .then(data =>{
@@ -24,10 +22,8 @@ function SaveResponse() {
                 userResponse.push({userName: data[dataItem].userName, userMessage: data[dataItem].userMessage})
             }
             setAllResponses(userResponse);
-        })
+        })       
 
-        setStopInfiniteLoop(true);
-    }
 
     const handleUserMessageChange = (event) => {
         setUserMessage(event.target.value);
@@ -39,6 +35,7 @@ function SaveResponse() {
 
     //This will prevent our applications  from Reloading
     const handleSubmit = (event) => {
+
         event.preventDefault();
         console.log('userName: ', userName);
         console.log('userMessage: ', userMessage);
@@ -63,17 +60,12 @@ function SaveResponse() {
             })
 
         }
-        ).then(res =>{
-            console.log('res: ', res);
-            return res.json();
-        }).then(data => {
-            console.log('data: ', data);
-        })
-
+        )
 
         setUserName('');
         setUserMessage('');
     }
+    
 
 
   return (
