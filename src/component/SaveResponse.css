@@ -65,7 +65,7 @@
     align-items: center;
     /* margin-top: 10px; */
     gap: 5px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 .response-item p{
     margin: 3px;
